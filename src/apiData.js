@@ -16,8 +16,6 @@ export async function dataPerPokemon(url) {
     data.types.forEach(nType => {
       types.push(nType.type.name);
     });
-    // console.log(data.sprites.other['official-artwork'].front_default);
-    // console.log({ abilities, types });
     const image = String(data.sprites.other['official-artwork'].front_default);
     return { abilities, types, image };
   } catch {
@@ -47,7 +45,6 @@ export async function getAllPokemonData() {
         image: aditionalInfo.image,
       });
     }
-    // console.log(listPokemon);
     return listPokemon;
   } catch {
     return -1;
