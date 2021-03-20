@@ -1,29 +1,36 @@
-import { useState, useEffect } from 'react';
-// import { getAllPokemonData } from './apiData';
+// import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './App.css';
 
-function App() {
-  const [values, setValues] = useState([]);
-
-  useEffect(async () => {
-    const response = await fetch('https://hidden-plateau-07048.herokuapp.com/pokemon/get', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await response.json();
-    console.log(Object.values(data));
-    setValues(Object.values(data));
-  }, []);
+function App(props) {
+  const { pokemons, types } = props;
+  console.log(pokemons);
   return (
     <div className="App">
       <p>
-        {values.map(v => JSON.stringify(v)).join(',')}
+        {/* {pokemons.map(p => JSON.stringify(p)).join(',')} */}
+      </p>
+      <p>
+        {[...types].map(t => JSON.stringify(t)).join(',')}
       </p>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  pokemons: state.data.pokemons,
+  types: state.data.types,
+});
+
+App.propTypes = {
+  pokemons: PropTypes.shape([]),
+  types: PropTypes.shape([]),
+};
+
+App.defaultProps = {
+  pokemons: null,
+  types: null,
+};
+
+export default connect(mapStateToProps)(App);
