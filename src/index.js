@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { addPokemon, addType } from './actions/index';
 import rootReducer from './reducers/index';
 import './index.css';
-import App from './App';
+import App from './components/App';
 
 const initialState = {
   pokemons: [],
