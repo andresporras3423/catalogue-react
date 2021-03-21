@@ -19,7 +19,7 @@ function PokemonRow(props) {
           <p>
             {`abilities: ${pokemon.abilities.join(', ')}`}
           </p>
-          <img width="200px" height="200px" alt="" src={pokemon.image} />
+          <img width="300px" height="300px" alt="" src={pokemon.image} />
         </div>
       );
     }

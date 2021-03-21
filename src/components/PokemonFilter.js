@@ -2,13 +2,19 @@
 import { nanoid } from 'nanoid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeFilter } from '../actions/index';
+import { changeFilter, switchFilterPage } from '../actions/index';
 
 function PokemonFilter(props) {
-  const { types, handleFilterChange, pokemonType } = props;
+  const {
+    types, handleFilterChange, handleSwitchFilterPage, pokemonType,
+  } = props;
 
   const changeFilter = event => {
     handleFilterChange(event.target.value);
+  };
+
+  const changePage = () => {
+    handleSwitchFilterPage();
   };
   return (
     <div className="select-filter">
@@ -24,6 +30,7 @@ function PokemonFilter(props) {
         ))
       }
       </select>
+      <button type="submit" onClick={changePage}>Search</button>
     </div>
   );
 }
@@ -31,6 +38,9 @@ function PokemonFilter(props) {
 const mapDispatchToProps = dispatch => ({
   handleFilterChange: pokemonType => {
     dispatch(changeFilter(pokemonType));
+  },
+  handleSwitchFilterPage: () => {
+    dispatch(switchFilterPage());
   },
 });
 
@@ -43,12 +53,14 @@ PokemonFilter.propTypes = {
   types: PropTypes.shape([]),
   pokemonType: PropTypes.string,
   handleFilterChange: PropTypes.func,
+  handleSwitchFilterPage: PropTypes.func,
 };
 
 PokemonFilter.defaultProps = {
   types: null,
   pokemonType: null,
   handleFilterChange: null,
+  handleSwitchFilterPage: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonFilter);

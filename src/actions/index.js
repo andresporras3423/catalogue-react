@@ -1,4 +1,6 @@
-import { CHANGE_FILTER, ADD_POKEMON, ADD_TYPE } from '../types/index';
+import {
+  CHANGE_FILTER, ADD_POKEMON, ADD_TYPE, SWITCH_FILTER_PAGE,
+} from '../types/index';
 
 export const addPokemon = nPokemon => ({
   type: ADD_POKEMON,
@@ -19,4 +21,10 @@ export const changeFilter = pokemonType => ({
   pokemonType,
 });
 
-export default { addPokemon, addType, changeFilter };
+export const switchFilterPage = () => ({
+  type: SWITCH_FILTER_PAGE,
+});
+
+export default {
+  addPokemon, addType, changeFilter, switchFilterPage,
+};
