@@ -14,12 +14,10 @@ function PokemonRow(props) {
       return (
         <div>
           <p>
-            types:
-            {pokemon.types.join(', ')}
+            {`types: ${pokemon.types.join(', ')}`}
           </p>
           <p>
-            abilities:
-            {pokemon.abilities.join(', ')}
+            {`abilities: ${pokemon.abilities.join(', ')}`}
           </p>
           <img width="200px" height="200px" alt="" src={pokemon.image} />
         </div>
