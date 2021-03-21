@@ -1,6 +1,6 @@
 import { ADD_POKEMON, ADD_TYPE } from '../types/index';
 
-const pokemonReducer = (state = { pokemons: [], types: new Set() }, action) => {
+const pokemonReducer = (state = { pokemons: [], types: new Set(['All']) }, action) => {
   switch (action.type) {
     case ADD_POKEMON: return {
       ...state,
