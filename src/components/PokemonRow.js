@@ -1,12 +1,41 @@
-// import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function PokemonRow(props) {
   const { pokemon } = props;
+  const [selected, setSelected] = useState(false);
+
+  const updateSelected = () => {
+    setSelected(!selected);
+  };
+
+  const renderAuthButton = () => {
+    if (selected) {
+      return (
+        <div>
+          <p>
+            types:
+            {pokemon.types.join(', ')}
+          </p>
+          <p>
+            abilities:
+            {pokemon.abilities.join(', ')}
+          </p>
+          <img width="200px" height="200px" alt="" src={pokemon.image} />
+        </div>
+      );
+    }
+
+    return <div />;
+  };
+
   return (
     <tr>
-      <td>{pokemon.name}</td>
-      <td><button type="submit">show details</button></td>
+      <td>
+        <span>{pokemon.name}</span>
+        {renderAuthButton()}
+      </td>
+      <td><button type="submit" onClick={updateSelected}>{selected ? 'hide details' : 'show details'}</button></td>
     </tr>
   );
 }
