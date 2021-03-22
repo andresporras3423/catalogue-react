@@ -30,10 +30,9 @@ function PokemonRow(props) {
   return (
     <tr>
       <td>
-        <span>{pokemon.name}</span>
+        <button type="submit" onClick={updateSelected}>{pokemon.name}</button>
         {renderAuthButton()}
       </td>
-      <td><button type="submit" onClick={updateSelected}>{selected ? 'hide details' : 'show details'}</button></td>
     </tr>
   );
 }

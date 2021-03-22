@@ -18,7 +18,10 @@ function App(props) {
 
   return (
     <div className="App">
-      {renderComponent()}
+      <div>
+        <h1>My PokeList</h1>
+        {renderComponent()}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,27 @@
+button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 100vh;
+  color: white;
+}
+
+.App *:not(option, input, select) {
+  color: white;
+}
+
+.App > * {
+  width: 350px;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: black;
 }
 
 .App-logo {
