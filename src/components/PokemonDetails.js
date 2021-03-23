@@ -14,10 +14,12 @@ function PokemonDetails(props) {
       <button type="submit" onClick={changePage}>Go back to filter page</button>
       <h3>{selectedPokemon.name}</h3>
       <p>
-        {`types: ${selectedPokemon.types.join(', ')}`}
+        <strong>Types: </strong>
+        {selectedPokemon.types.join(', ')}
       </p>
       <p>
-        {`abilities: ${selectedPokemon.abilities.join(', ')}`}
+        <strong>Abilities: </strong>
+        {selectedPokemon.abilities.join(', ')}
       </p>
       <img width="300px" height="300px" alt="" src={selectedPokemon.image} />
     </div>
