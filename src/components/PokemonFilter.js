@@ -28,42 +28,45 @@ function PokemonFilter(props) {
     handleTypeFilterName(event.target.value);
   };
 
-  const clearForm = () => {
+  const clearForm = event => {
+    event.preventDefault();
     handleFilterType('All');
     handleFilterName('');
     handleTypeFilterName('0');
   };
   return (
-    <div className="select-filter">
-      <div>
-        <h2>Welcome to my Pokedex</h2>
-        <p>Here you will find find information about the first 100 pokemons</p>
-        <p>Use below form to filter by type or content name.</p>
-      </div>
-      <div>
-        <span>Filter by category:</span>
-        <select
-          className="form-control"
-          value={pokemonType}
-          onChange={changeFilterType}
-        >
-          {
+    <div className="filter-container">
+      <form className="select-filter">
+        <div>
+          <h2>Welcome to my Pokedex</h2>
+          <p>Here you will find find information about the first 100 pokemons</p>
+          <p>Use below form to filter by type or content name.</p>
+        </div>
+        <div className="two-columns">
+          <span>Filter by type:</span>
+          <select
+            className="form-control"
+            value={pokemonType}
+            onChange={changeFilterType}
+          >
+            {
         [...types].map(type => (
           <option value={type} key={nanoid()}>{type}</option>
         ))
       }
-        </select>
-      </div>
-      <div>
-        <select value={typeFilterName} onChange={changeTypeFilterName}>
-          <option value="0">contains</option>
-          <option value="1">start</option>
-          <option value="2">end</option>
-          <option value="3">exact</option>
-        </select>
-        <input type="text" placeholder="leave empty for including all" onChange={changeFilterName} value={pokemonName} />
-      </div>
-      <button type="submit" onClick={clearForm}>Clear form</button>
+          </select>
+        </div>
+        <div className="two-columns">
+          <select value={typeFilterName} className="form-control name-select" onChange={changeTypeFilterName}>
+            <option value="0">Contains:</option>
+            <option value="1">Starts:</option>
+            <option value="2">Ends:</option>
+            <option value="3">Find exact:</option>
+          </select>
+          <input type="text" placeholder="empty to ignore" className="form-control" onChange={changeFilterName} value={pokemonName} />
+        </div>
+        <button type="submit" onClick={clearForm}>Clear form</button>
+      </form>
     </div>
   );
 }
