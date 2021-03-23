@@ -2,11 +2,10 @@ import { nanoid } from 'nanoid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PokemonRow from './PokemonRow';
-import { switchFilterPage } from '../actions/index';
 
 function PokemonsList(props) {
   const {
-    pokemons, pokemonType, handleSwitchFilterPage, pokemonName, typeFilterName,
+    pokemons, pokemonType, pokemonName, typeFilterName,
   } = props;
 
   const filterPokemons = () => pokemons.filter(
@@ -20,12 +19,9 @@ function PokemonsList(props) {
     )
     ),
   );
-  const changePage = () => {
-    handleSwitchFilterPage();
-  };
   return (
     <div>
-      <button type="submit" onClick={changePage}>Go back to filter page</button>
+      <span>{`${filterPokemons().length} results`}</span>
       <table className="table border-color">
         <tbody>
           {
@@ -46,17 +42,10 @@ const mapStateToProps = state => ({
   typeFilterName: state.filter.typeFilterName,
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleSwitchFilterPage: () => {
-    dispatch(switchFilterPage());
-  },
-});
-
 PokemonsList.propTypes = {
   pokemons: PropTypes.shape([]),
   pokemonType: PropTypes.string,
   pokemonName: PropTypes.string,
-  handleSwitchFilterPage: PropTypes.func,
   typeFilterName: PropTypes.string,
 };
 
@@ -64,8 +53,7 @@ PokemonsList.defaultProps = {
   pokemons: null,
   pokemonType: null,
   pokemonName: null,
-  handleSwitchFilterPage: null,
   typeFilterName: null,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonsList);
+export default connect(mapStateToProps)(PokemonsList);

@@ -1,19 +1,24 @@
-// import { useState, useEffect } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import PokemonList from './PokemonsList';
 import PokemonFilter from './PokemonFilter';
+import PokemonDetails from './PokemonDetails';
 
 function App(props) {
   const { switchFilterPage } = props;
 
   const renderComponent = () => {
     if (switchFilterPage) {
-      return <PokemonFilter />;
+      return (
+        <>
+          <PokemonFilter />
+          <PokemonList />
+        </>
+      );
     }
 
-    return <PokemonList />;
+    return <PokemonDetails />;
   };
 
   return (

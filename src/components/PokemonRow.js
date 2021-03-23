@@ -1,41 +1,31 @@
-import { useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { changeSelectedPokemon, switchFilterPage } from '../actions/index';
 
 function PokemonRow(props) {
-  const { pokemon } = props;
-  const [selected, setSelected] = useState(false);
+  const { pokemon, handleSwitchFilterPage, handleChangeSelectedPokemon } = props;
 
-  const updateSelected = () => {
-    setSelected(!selected);
+  const changeSelected = () => {
+    handleChangeSelectedPokemon(pokemon);
+    handleSwitchFilterPage();
   };
-
-  const renderAuthButton = () => {
-    if (selected) {
-      return (
-        <div>
-          <p>
-            {`types: ${pokemon.types.join(', ')}`}
-          </p>
-          <p>
-            {`abilities: ${pokemon.abilities.join(', ')}`}
-          </p>
-          <img width="300px" height="300px" alt="" src={pokemon.image} />
-        </div>
-      );
-    }
-
-    return <div />;
-  };
-
   return (
     <tr>
       <td>
-        <button type="submit" onClick={updateSelected}>{pokemon.name}</button>
-        {renderAuthButton()}
+        <button type="submit" onClick={changeSelected}>{pokemon.name}</button>
       </td>
     </tr>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  handleChangeSelectedPokemon: selectedPokemon => {
+    dispatch(changeSelectedPokemon(selectedPokemon));
+  },
+  handleSwitchFilterPage: () => {
+    dispatch(switchFilterPage());
+  },
+});
 
 PokemonRow.propTypes = {
   pokemon: PropTypes.shape({
@@ -45,10 +35,12 @@ PokemonRow.propTypes = {
     types: PropTypes.shape([]).isRequired,
     image: PropTypes.string.isRequired,
   }),
+  handleChangeSelectedPokemon: PropTypes.func.isRequired,
+  handleSwitchFilterPage: PropTypes.func.isRequired,
 };
 
 PokemonRow.defaultProps = {
   pokemon: null,
 };
 
-export default PokemonRow;
+export default connect(null, mapDispatchToProps)(PokemonRow);

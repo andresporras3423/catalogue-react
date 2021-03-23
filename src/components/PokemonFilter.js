@@ -2,14 +2,13 @@ import { nanoid } from 'nanoid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  changeFilterType, switchFilterPage, changeFilterName, changeTypeFilterName,
+  changeFilterType, changeFilterName, changeTypeFilterName,
 } from '../actions/index';
 
 function PokemonFilter(props) {
   const {
     types,
     handleFilterType,
-    handleSwitchFilterPage,
     pokemonType,
     handleFilterName,
     handleTypeFilterName,
@@ -27,10 +26,6 @@ function PokemonFilter(props) {
 
   const changeTypeFilterName = event => {
     handleTypeFilterName(event.target.value);
-  };
-
-  const changePage = () => {
-    handleSwitchFilterPage();
   };
 
   const clearForm = () => {
@@ -69,7 +64,6 @@ function PokemonFilter(props) {
         <input type="text" placeholder="leave empty for including all" onChange={changeFilterName} value={pokemonName} />
       </div>
       <button type="submit" onClick={clearForm}>Clear form</button>
-      <button type="submit" onClick={changePage}>Search</button>
     </div>
   );
 }
@@ -84,9 +78,6 @@ const mapDispatchToProps = dispatch => ({
   handleTypeFilterName: typeFilterName => {
     dispatch(changeTypeFilterName(typeFilterName));
   },
-  handleSwitchFilterPage: () => {
-    dispatch(switchFilterPage());
-  },
 });
 
 const mapStateToProps = state => ({
@@ -100,7 +91,6 @@ PokemonFilter.propTypes = {
   types: PropTypes.shape([]),
   pokemonType: PropTypes.string,
   handleFilterType: PropTypes.func,
-  handleSwitchFilterPage: PropTypes.func,
   handleFilterName: PropTypes.func,
   handleTypeFilterName: PropTypes.func,
   pokemonName: PropTypes.string,
@@ -111,7 +101,6 @@ PokemonFilter.defaultProps = {
   types: null,
   pokemonType: null,
   handleFilterType: null,
-  handleSwitchFilterPage: null,
   handleFilterName: null,
   handleTypeFilterName: null,
   pokemonName: null,
