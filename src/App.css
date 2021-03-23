@@ -29,6 +29,12 @@ button {
   pointer-events: none;
 }
 
+h1.pokelist-title{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: rgb(255,255,127)
+}
+
 .filter-container{
   display: grid;
   grid-template-columns: 1fr 18fr 1fr;

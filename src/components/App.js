@@ -24,7 +24,7 @@ function App(props) {
   return (
     <div className="App">
       <div>
-        <h1>My PokeList</h1>
+        <h1 className="pokelist-title">My PokeList</h1>
         {renderComponent()}
       </div>
     </div>
