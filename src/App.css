@@ -21,7 +21,7 @@ button {
   width: 350px;
   height: 100vh;
   overflow-y: scroll;
-  background-color: black;
+  background-color: rgb(15,15,15);
 }
 
 .App-logo {
@@ -30,9 +30,12 @@ button {
 }
 
 h1.pokelist-title{
-  margin-top: 25px;
-  margin-bottom: 25px;
-  color: rgb(255,255,127)
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: rgb(255,255,127);
+  background-color: black;
+  border-style: solid;
+  border-width:5px;
 }
 
 .filter-container{
@@ -52,7 +55,7 @@ h1.pokelist-title{
 }
 
 .name-select, .name-select:focus{
-  background-color: black;
+  background-color: rgb(15,15,15);
   color: white;
 }
 
