@@ -21,7 +21,7 @@ function PokemonsList(props) {
   );
   return (
     <div>
-      <span>{`${filterPokemons().length} results`}</span>
+      <span>{pokemons.length === 0 ? 'please wait, data loading...' : `${filterPokemons().length} results`}</span>
       <table className="table border-color">
         <tbody>
           {

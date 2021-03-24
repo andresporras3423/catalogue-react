@@ -7,6 +7,7 @@ import { addPokemon, addType } from '../actions/index';
 import PokemonList from './PokemonsList';
 import PokemonFilter from './PokemonFilter';
 import PokemonDetails from './PokemonDetails';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App(props) {
   const { switchFilterPage, handleAddPokemon, handleAddType } = props;
