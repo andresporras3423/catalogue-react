@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 import useState from 'react-usestateref';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { addPokemon, addType } from '../actions/index';
 import PokemonList from './PokemonsList';
 import PokemonFilter from './PokemonFilter';
 import PokemonDetails from './PokemonDetails';
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App(props) {
   const { switchFilterPage, handleAddPokemon, handleAddType } = props;
@@ -39,27 +39,24 @@ function App(props) {
       });
     }
   }, [initialState]);
-
-  const renderComponent = () => {
-    if (switchFilterPage) {
-      return (
-        <>
-          <PokemonFilter />
-          <PokemonList />
-        </>
-      );
-    }
-
-    return <PokemonDetails />;
-  };
-
+  console.log(switchFilterPage);
   return (
-    <div className="App">
-      <div>
-        <h1 className="pokelist-title">My PokeList</h1>
-        {renderComponent()}
+    <Router>
+      <div className="App">
+        <div>
+          <h1 className="pokelist-title">My PokeList</h1>
+          <Switch>
+            <Route exact path="/details/:id">
+              <PokemonDetails />
+            </Route>
+            <Route exact path="/">
+              <PokemonFilter />
+              <PokemonList />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

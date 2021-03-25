@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { switchFilterPage } from '../actions/index';
+import { useParams, Link } from 'react-router-dom';
 
 function PokemonDetails(props) {
-  const { selectedPokemon, handleSwitchFilterPage } = props;
-
-  const changePage = () => {
-    handleSwitchFilterPage();
-  };
+  const { selectedPokemon } = props;
+  const { id } = useParams();
 
   return (
     <div>
-      <button type="submit" onClick={changePage}>Go back to filter page</button>
-      <h3>{selectedPokemon.name}</h3>
+      <Link to="/">Go back to filter page</Link>
+      <h3>
+        {selectedPokemon.name}
+        {' '}
+        {id}
+      </h3>
       <p>
         <strong>Types: </strong>
         {selectedPokemon.types.join(', ')}
@@ -30,12 +31,6 @@ const mapStateToProps = state => ({
   selectedPokemon: state.filter.selectedPokemon,
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleSwitchFilterPage: () => {
-    dispatch(switchFilterPage());
-  },
-});
-
 PokemonDetails.propTypes = {
   selectedPokemon: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -44,12 +39,10 @@ PokemonDetails.propTypes = {
     types: PropTypes.shape([]).isRequired,
     image: PropTypes.string.isRequired,
   }),
-  handleSwitchFilterPage: PropTypes.func,
 };
 
 PokemonDetails.defaultProps = {
   selectedPokemon: null,
-  handleSwitchFilterPage: null,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonDetails);
+export default connect(mapStateToProps)(PokemonDetails);

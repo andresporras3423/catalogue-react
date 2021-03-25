@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { changeSelectedPokemon, switchFilterPage } from '../actions/index';
 
 function PokemonRow(props) {
@@ -12,7 +13,7 @@ function PokemonRow(props) {
   return (
     <tr>
       <td>
-        <button type="submit" onClick={changeSelected}>{pokemon.name}</button>
+        <Link to={`/details/${pokemon.id}`} onClick={changeSelected}>{pokemon.name}</Link>
       </td>
     </tr>
   );
