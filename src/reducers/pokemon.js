@@ -9,9 +9,7 @@ const pokemonReducer = (state = { pokemons: [], types: new Set(['All']) }, actio
         nPokemons.push({
           id: action.id,
           name: action.name,
-          abilities: action.abilities,
           types: action.types,
-          image: action.image,
         });
         return nPokemons;
       })(),

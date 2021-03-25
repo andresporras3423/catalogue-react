@@ -1,48 +1,56 @@
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-function PokemonDetails(props) {
-  const { selectedPokemon } = props;
+function PokemonDetails() {
+  const [pokemon, setPokemon] = useState({
+    name: '', abilities: [], types: [], image: '',
+  });
   const { id } = useParams();
+
+  useEffect(async () => {
+    const getPokemonData = async () => {
+      const response = await fetch(`https://hidden-plateau-07048.herokuapp.com/pokemon/get_details?id=${id}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      setPokemon(data);
+    };
+    await getPokemonData();
+  }, []);
+
+  const showPokemonData = () => {
+    if (pokemon.image !== '') {
+      return (
+        <>
+          <h3>
+            {pokemon.name}
+          </h3>
+          <p>
+            <strong>Types: </strong>
+            {pokemon.types.join(', ')}
+          </p>
+          <p>
+            <strong>Abilities: </strong>
+            {pokemon.abilities.join(', ')}
+          </p>
+          <img width="300px" height="300px" alt="" src={pokemon.image} />
+        </>
+      );
+    }
+
+    return <p>loading content...</p>;
+  };
 
   return (
     <div>
       <Link to="/">Go back to filter page</Link>
-      <h3>
-        {selectedPokemon.name}
-        {' '}
-        {id}
-      </h3>
-      <p>
-        <strong>Types: </strong>
-        {selectedPokemon.types.join(', ')}
-      </p>
-      <p>
-        <strong>Abilities: </strong>
-        {selectedPokemon.abilities.join(', ')}
-      </p>
-      <img width="300px" height="300px" alt="" src={selectedPokemon.image} />
+      {showPokemonData()}
     </div>
   );
 }
 
-const mapStateToProps = state => ({
-  selectedPokemon: state.filter.selectedPokemon,
-});
-
-PokemonDetails.propTypes = {
-  selectedPokemon: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    abilities: PropTypes.shape([]).isRequired,
-    types: PropTypes.shape([]).isRequired,
-    image: PropTypes.string.isRequired,
-  }),
-};
-
-PokemonDetails.defaultProps = {
-  selectedPokemon: null,
-};
-
-export default connect(mapStateToProps)(PokemonDetails);
+export default PokemonDetails;
