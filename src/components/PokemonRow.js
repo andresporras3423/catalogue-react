@@ -14,11 +14,11 @@ function PokemonRow(props) {
 
 PokemonRow.propTypes = {
   pokemon: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    abilities: PropTypes.shape([]).isRequired,
-    types: PropTypes.shape([]).isRequired,
-    image: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    abilities: PropTypes.instanceOf(Array),
+    types: PropTypes.instanceOf(Array),
+    image: PropTypes.string,
   }),
 };
 
