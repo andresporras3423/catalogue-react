@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import App from '../components/App';
 import rootReducer from '../reducers/index';
 
-describe('Testting my App component', () => {
+describe('Testting PokemonList component', () => {
   beforeEach(() => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     render(

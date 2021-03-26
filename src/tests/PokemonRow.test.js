@@ -1,0 +1,33 @@
+import { render, screen, fireEvent } from '@testing-library/react';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import App from '../components/App';
+import rootReducer from '../reducers/index';
+
+describe('Testting PokemonRow component', () => {
+  beforeEach(() => {
+    const store = createStore(rootReducer, applyMiddleware(thunk));
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+    );
+  });
+  test('direct to the page with ikachu details where click over pikachu link', async () => {
+    fireEvent.click(await screen.findByText(/pikachu/));
+    const element1 = await screen.findByText(/static/);
+    expect(element1).toBeInTheDocument();
+  });
+  test('link to redirect back appears when change to pokemon page details', async () => {
+    fireEvent.click(await screen.findByText(/pikachu/));
+    const element1 = screen.getByText(/Go back to filter page/);
+    expect(element1).toBeInTheDocument();
+  });
+  test('link to redirect back is working', async () => {
+    fireEvent.click(await screen.findByText(/pikachu/));
+    fireEvent.click(screen.getByText(/Go back to filter page/));
+    const element1 = screen.getByText(/Welcome to my Pokedex/);
+    expect(element1).toBeInTheDocument();
+  });
+});
