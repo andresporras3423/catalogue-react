@@ -1,6 +1,13 @@
-import { ADD_POKEMON, ADD_TYPE } from '../types/index';
+import { ADD_POKEMON, ADD_TYPE, CHANGE_SELECTED_POKEMON } from '../types/index';
 
-const pokemonReducer = (state = { pokemons: [], types: new Set(['All']) }, action) => {
+const pokemonReducer = (state = {
+  name: '',
+  abilities: [],
+  selectedTypes: [],
+  image: '',
+  pokemons: [],
+  types: new Set(['All']),
+}, action) => {
   switch (action.type) {
     case ADD_POKEMON: return {
       ...state,
@@ -21,6 +28,13 @@ const pokemonReducer = (state = { pokemons: [], types: new Set(['All']) }, actio
         nTypes.add(action.pokemonType);
         return nTypes;
       })(),
+    };
+    case CHANGE_SELECTED_POKEMON: return {
+      ...state,
+      name: action.name,
+      abilities: [...action.abilities],
+      selectedTypes: [...action.selectedTypes],
+      image: action.image,
     };
     default: return state;
   }

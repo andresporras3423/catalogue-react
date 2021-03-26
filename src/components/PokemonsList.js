@@ -71,9 +71,6 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   pokemons: state.data.pokemons,
-  pokemonType: state.filter.pokemonType,
-  pokemonName: state.filter.pokemonName,
-  typeFilterName: state.filter.typeFilterName,
 });
 
 PokemonsList.propTypes = {

@@ -5,6 +5,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  text-decoration-line: underline;
+}
+
 .App {
   text-align: center;
   display: grid;

@@ -1,38 +1,35 @@
 import { nanoid } from 'nanoid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  changeFilterType, changeFilterName, changeTypeFilterName,
-} from '../actions/index';
 
 function PokemonFilter(props) {
   const {
     types,
-    handleFilterType,
     pokemonType,
-    handleFilterName,
-    handleTypeFilterName,
     pokemonName,
     typeFilterName,
+    updateName,
+    updateType,
+    updateTypeFilterName,
   } = props;
 
   const changeFilterType = event => {
-    handleFilterType(event.target.value);
+    updateType(event.target.value);
   };
 
   const changeFilterName = event => {
-    handleFilterName(event.target.value);
+    updateName(event.target.value);
   };
 
   const changeTypeFilterName = event => {
-    handleTypeFilterName(event.target.value);
+    updateTypeFilterName(event.target.value);
   };
 
   const clearForm = event => {
     event.preventDefault();
-    handleFilterType('All');
-    handleFilterName('');
-    handleTypeFilterName('0');
+    updateType('All');
+    updateName('');
+    updateTypeFilterName('0');
   };
   return (
     <div className="filter-container">
@@ -71,43 +68,28 @@ function PokemonFilter(props) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  handleFilterType: pokemonType => {
-    dispatch(changeFilterType(pokemonType));
-  },
-  handleFilterName: pokemonName => {
-    dispatch(changeFilterName(pokemonName));
-  },
-  handleTypeFilterName: typeFilterName => {
-    dispatch(changeTypeFilterName(typeFilterName));
-  },
-});
-
 const mapStateToProps = state => ({
   types: state.data.types,
-  pokemonType: state.filter.pokemonType,
-  pokemonName: state.filter.pokemonName,
-  typeFilterName: state.filter.typeFilterName,
 });
 
 PokemonFilter.propTypes = {
   types: PropTypes.shape([]),
   pokemonType: PropTypes.string,
-  handleFilterType: PropTypes.func,
-  handleFilterName: PropTypes.func,
-  handleTypeFilterName: PropTypes.func,
   pokemonName: PropTypes.string,
   typeFilterName: PropTypes.string,
+  updateName: PropTypes.func,
+  updateType: PropTypes.func,
+  updateTypeFilterName: PropTypes.func,
 };
 
 PokemonFilter.defaultProps = {
   types: null,
   pokemonType: null,
-  handleFilterType: null,
-  handleFilterName: null,
-  handleTypeFilterName: null,
   pokemonName: null,
   typeFilterName: null,
+  updateName: null,
+  updateType: null,
+  updateTypeFilterName: null,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PokemonFilter);
+export default connect(mapStateToProps)(PokemonFilter);
