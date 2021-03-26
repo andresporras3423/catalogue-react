@@ -74,7 +74,7 @@ const mapStateToProps = state => ({
 });
 
 PokemonsList.propTypes = {
-  pokemons: PropTypes.shape([]),
+  pokemons: PropTypes.instanceOf(Array),
   pokemonType: PropTypes.string,
   pokemonName: PropTypes.string,
   typeFilterName: PropTypes.string,
