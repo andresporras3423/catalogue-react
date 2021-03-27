@@ -36,6 +36,10 @@ This is the react capstone project, for Microverse academy, By Oscar Russi
 
 [Live Demo](https://oscar-russi-pokedex.netlify.app/)
 
+# Video presentation
+
+[Link Video](https://drive.google.com/file/d/1BujPsXi8hR6dedO0t1Rq62ePxRQjkrBH/view) 
+
 # How to set up this project
 
 - Download this project or install running the next command in the terminal: https://github.com/andresporras3423/catalogue-react.git
