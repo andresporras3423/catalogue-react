@@ -1,34 +1,34 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  BrowserRouter as Router, Redirect,
+} from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from '../components/App';
 import rootReducer from '../reducers/index';
 
-describe('Testing PokemonRow component', () => {
+describe('Testing App component', () => {
   beforeEach(() => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     render(
       <Router>
         <Provider store={store}>
+          <Redirect to="/details/4" />
           <App />
         </Provider>
       </Router>,
     );
   });
-  test('direct to the page with pikachu details where click over pikachu link', async () => {
-    fireEvent.click(await screen.findByText(/pikachu/));
-    const element1 = await screen.findByText(/static/);
+  test('Page shows pokemon abilities', async () => {
+    const element1 = await screen.findByText(/blaze/);
     expect(element1).toBeInTheDocument();
   });
-  test('link to redirect back appears when change to pokemon page details', async () => {
-    fireEvent.click(await screen.findByText(/pikachu/));
-    const element1 = screen.getByText(/Go back to filter page/);
+  test('Page shows pokemon types', async () => {
+    const element1 = await screen.findByText(/fire/);
     expect(element1).toBeInTheDocument();
   });
-  test('link to redirect back is working', async () => {
-    fireEvent.click(await screen.findByText(/pikachu/));
+  test('Page can redirect to the main page', async () => {
     fireEvent.click(screen.getByText(/Go back to filter page/));
     const element1 = screen.getByText(/Welcome to my Pokedex/);
     expect(element1).toBeInTheDocument();

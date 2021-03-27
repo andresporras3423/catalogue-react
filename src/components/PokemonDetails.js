@@ -12,8 +12,11 @@ function PokemonDetails(props) {
   const { id } = useParams();
 
   useEffect(async () => {
+    const abortController = new AbortController();
+    const { signal } = abortController;
     const getPokemonData = async () => {
       const response = await fetch(`https://hidden-plateau-07048.herokuapp.com/pokemon/get_details?id=${id}`, {
+        signal,
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -21,12 +24,13 @@ function PokemonDetails(props) {
         },
       });
       const data = await response.json();
-      // console.log(data);
       handleChangeSelectedPokemon(data);
-      // console.log(selectedPokemon);
     };
     await getPokemonData();
     setNewData(true);
+    return function cleanup() {
+      abortController.abort();
+    };
   }, []);
 
   const showPokemonData = () => {

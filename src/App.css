@@ -17,15 +17,23 @@ a {
   color: white;
 }
 
-.App *:not(option, input, select) {
-  color: white;
-}
-
 .App > * {
   width: 350px;
   height: 100vh;
   overflow-y: scroll;
-  background-color: rgb(15,15,15);
+  background-color: rgb(15, 15, 15);
+}
+
+.filter-container > * {
+  grid-column: 2;
+}
+
+.two-columns > * {
+  margin: 5px;
+}
+
+.App *:not(option, input, select) {
+  color: white;
 }
 
 .App-logo {
@@ -33,26 +41,23 @@ a {
   pointer-events: none;
 }
 
-h1.pokelist-title{
+h1.pokelist-title {
   padding-top: 25px;
   padding-bottom: 25px;
   margin-bottom: 25px;
-  color: rgb(253,245,180);
-  border-color: rgb(201,201,202);
+  color: rgb(253, 245, 180);
+  border-color: rgb(201, 201, 202);
   background-color: black;
   border-style: solid;
-  border-width:5px;
+  border-width: 5px;
 }
 
-.filter-container{
+.filter-container {
   display: grid;
   grid-template-columns: 1fr 18fr 1fr;
 }
-.filter-container > * {
-  grid-column: 2;
-}
 
-.two-columns{
+.two-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 5px;
@@ -60,13 +65,10 @@ h1.pokelist-title{
   align-items: center;
 }
 
-.name-select, .name-select:focus{
-  background-color: rgb(15,15,15);
+.name-select,
+.name-select:focus {
+  background-color: rgb(15, 15, 15);
   color: white;
-}
-
-.two-columns > * {
-  margin: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
