@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import App from '../components/App';
 import rootReducer from '../reducers/index';
 
-describe('Testting PokemonRow component', () => {
+describe('Testing PokemonRow component', () => {
   beforeEach(() => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     render(
@@ -14,7 +14,7 @@ describe('Testting PokemonRow component', () => {
       </Provider>,
     );
   });
-  test('direct to the page with ikachu details where click over pikachu link', async () => {
+  test('direct to the page with pikachu details where click over pikachu link', async () => {
     fireEvent.click(await screen.findByText(/pikachu/));
     const element1 = await screen.findByText(/static/);
     expect(element1).toBeInTheDocument();

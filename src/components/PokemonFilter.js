@@ -42,6 +42,7 @@ function PokemonFilter(props) {
         <div className="two-columns">
           <span>Filter by type:</span>
           <select
+            data-testid="select"
             className="form-control"
             value={pokemonType}
             onChange={changeFilterType}
@@ -54,13 +55,13 @@ function PokemonFilter(props) {
           </select>
         </div>
         <div className="two-columns">
-          <select value={typeFilterName} className="form-control name-select" onChange={changeTypeFilterName}>
+          <select data-testid="contains" value={typeFilterName} className="form-control name-select" onChange={changeTypeFilterName}>
             <option value="0">Contains:</option>
             <option value="1">Starts:</option>
             <option value="2">Ends:</option>
             <option value="3">Find exact:</option>
           </select>
-          <input type="text" placeholder="empty to ignore" className="form-control" onChange={changeFilterName} value={pokemonName} />
+          <input data-testid="input" type="text" placeholder="empty to ignore" className="form-control" onChange={changeFilterName} value={pokemonName} />
         </div>
         <button type="submit" onClick={clearForm}>Clear form</button>
       </form>
