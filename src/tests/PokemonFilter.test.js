@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import {  BrowserRouter as Router } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -9,9 +10,11 @@ describe('Testing PokemonFilter component', () => {
   beforeEach(() => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
+      <Router>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Router>,
     );
   });
   test('expect electric type to be after load API data', async () => {

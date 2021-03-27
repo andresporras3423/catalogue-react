@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import {  BrowserRouter as Router } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -9,9 +10,11 @@ describe('Testing App component', () => {
   beforeEach(() => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
+      <Router>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Router>,
     );
   });
   test('Check out title is loaded', () => {

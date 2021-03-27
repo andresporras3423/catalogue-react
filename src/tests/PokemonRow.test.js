@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { createStore, applyMiddleware } from 'redux';
+import {  BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from '../components/App';
@@ -9,9 +10,11 @@ describe('Testing PokemonRow component', () => {
   beforeEach(() => {
     const store = createStore(rootReducer, applyMiddleware(thunk));
     render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
+      <Router>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Router>,
     );
   });
   test('direct to the page with pikachu details where click over pikachu link', async () => {
