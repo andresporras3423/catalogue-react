@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import PokemonRow from './PokemonRow';
+import PokemonRow from '../components/PokemonRow';
 import { addPokemon, addType } from '../actions/index';
 
 function PokemonsList(props) {

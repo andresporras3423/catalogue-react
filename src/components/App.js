@@ -3,9 +3,9 @@ import '../App.css';
 import {
   Route, Switch,
 } from 'react-router-dom';
-import PokemonList from './PokemonsList';
-import PokemonFilter from './PokemonFilter';
-import PokemonDetails from './PokemonDetails';
+import PokemonList from '../containers/PokemonsList';
+import PokemonFilter from '../containers/PokemonFilter';
+import PokemonDetails from '../containers/PokemonDetails';
 
 function App() {
   const [name, setName] = useState('');
