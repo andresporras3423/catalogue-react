@@ -19,18 +19,18 @@ describe('Testing App component', () => {
         </Provider>
       </Router>,
     );
-  });
+  }, 60000);
   test('Page shows pokemon abilities', async () => {
     const element1 = await screen.findByText(/blaze/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('Page shows pokemon types', async () => {
     const element1 = await screen.findByText(/fire/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('Page can redirect to the main page', async () => {
     fireEvent.click(screen.getByText(/Go back to filter page/));
     const element1 = screen.getByText(/Welcome to my Pokedex/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
 });

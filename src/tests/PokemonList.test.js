@@ -16,17 +16,17 @@ describe('Testing PokemonList component', () => {
         </Provider>
       </Router>,
     );
-  });
+  }, 60000);
   test('Check out first pokemon of the list is found', async () => {
     const element = await screen.findByText(/bulbasaur/);
     expect(element).toBeInTheDocument();
-  });
+  }, 60000);
   test('Check out last pokemon of the list is found', async () => {
     const element1 = await screen.findByText(/voltorb/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('Check out the components shows that api search found 100 results', async () => {
     const element1 = await screen.findByText(/100 results/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
 });

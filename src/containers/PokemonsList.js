@@ -10,9 +10,12 @@ function PokemonsList(props) {
     pokemons, pokemonType, pokemonName, typeFilterName, handleAddPokemon, handleAddType,
   } = props;
   useEffect(async () => {
+    const abortController = new AbortController();
+    const { signal } = abortController;
     if (pokemons.length === 0) {
       const getPokemonData = async () => {
         const response = await fetch('https://hidden-plateau-07048.herokuapp.com/pokemon/get_names_types', {
+          signal,
           method: 'GET',
           headers: {
             Accept: 'application/json',
@@ -31,6 +34,9 @@ function PokemonsList(props) {
       };
       await getPokemonData();
     }
+    return function cleanup() {
+      abortController.abort();
+    };
   }, [pokemons]);
 
   const filterPokemons = () => pokemons.filter(

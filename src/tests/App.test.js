@@ -16,17 +16,17 @@ describe('Testing App component', () => {
         </Provider>
       </Router>,
     );
-  });
+  }, 60000);
   test('Check out title is loaded', () => {
     const element = screen.getByText(/My PokeList/);
     expect(element).toBeInTheDocument();
-  });
+  }, 60000);
   test('Check out loading message appears', () => {
     const element = screen.getByText(/please wait, data loading/);
     expect(element).toBeInTheDocument();
-  });
+  }, 60000);
   test('Check out tittle in inner component appear', () => {
     const element = screen.getByText(/Welcome to my Pokedex/);
     expect(element).toBeInTheDocument();
-  });
+  }, 60000);
 });

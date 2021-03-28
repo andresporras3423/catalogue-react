@@ -16,11 +16,11 @@ describe('Testing PokemonFilter component', () => {
         </Provider>
       </Router>,
     );
-  });
+  }, 60000);
   test('expect electric type to be after load API data', async () => {
     const element1 = await screen.findByText(/electric/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('show only two elements in the list after choosing ice in the select', async () => {
     await screen.findByText(/ice/);
     fireEvent.change(screen.getByTestId(/select/), {
@@ -28,7 +28,7 @@ describe('Testing PokemonFilter component', () => {
     });
     const element1 = await screen.findByText(/2 results/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('show only 26 elements in the list after typing p in the input value in the select', async () => {
     await screen.findByText(/ice/);
     fireEvent.change(screen.getByTestId(/input/), {
@@ -36,7 +36,7 @@ describe('Testing PokemonFilter component', () => {
     });
     const element1 = await screen.findByText(/26 results/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('show only 13 elements in the list after typing p in the input value in the select and filtering by start of the name', async () => {
     await screen.findByText(/ice/);
     fireEvent.change(screen.getByTestId(/contains/), {
@@ -47,7 +47,7 @@ describe('Testing PokemonFilter component', () => {
     });
     const element1 = await screen.findByText(/13 results/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('show only 4 elements in the list after typing p in the input value in the select, filtering by start of the name and choose normal type', async () => {
     await screen.findByText(/ice/);
     fireEvent.change(screen.getByTestId(/select/), {
@@ -61,7 +61,7 @@ describe('Testing PokemonFilter component', () => {
     });
     const element1 = await screen.findByText(/4 results/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
   test('show 100 elements after choosing ice type and then click on Clear form', async () => {
     await screen.findByText(/ice/);
     fireEvent.change(screen.getByTestId(/select/), {
@@ -70,5 +70,5 @@ describe('Testing PokemonFilter component', () => {
     fireEvent.click(screen.getByText(/Clear form/));
     const element1 = await screen.findByText(/100 results/);
     expect(element1).toBeInTheDocument();
-  });
+  }, 60000);
 });
