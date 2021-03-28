@@ -38,7 +38,7 @@ This is the react capstone project, for Microverse academy, By Oscar Russi
 
 # Video presentation
 
-[Link Video](https://drive.google.com/file/d/1BujPsXi8hR6dedO0t1Rq62ePxRQjkrBH/view) 
+[Link Video](https://drive.google.com/file/d/1eP69npcB7DQeUfy3DfUwe7WRwbbtwMuW/view) 
 
 # How to set up this project
 
