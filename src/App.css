@@ -1,10 +1,74 @@
+button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a {
+  text-decoration-line: underline;
+}
+
 .App {
   text-align: center;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 100vh;
+  color: white;
+}
+
+.App > * {
+  width: 350px;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: rgb(15, 15, 15);
+}
+
+.filter-container > * {
+  grid-column: 2;
+}
+
+.two-columns > * {
+  margin: 5px;
+}
+
+.App *:not(option, input, select) {
+  color: white;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+h1.pokelist-title {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  color: rgb(253, 245, 180);
+  border-color: rgb(201, 201, 202);
+  background-color: black;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.filter-container {
+  display: grid;
+  grid-template-columns: 1fr 18fr 1fr;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 5px;
+  grid-gap: 5px;
+  align-items: center;
+}
+
+.name-select,
+.name-select:focus {
+  background-color: rgb(15, 15, 15);
+  color: white;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,6 +96,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
